@@ -92,6 +92,7 @@ def static_checks() -> None:
 
     css = (SITE_DIR / "css" / "main.css").read_text(encoding="utf-8")
     check("main.css defines the gold palette", "--gold:#e2b340" in css)
+    focal_selectors_resolve()
 
     build_is_deterministic()
 
@@ -172,6 +173,31 @@ def main() -> None:
         sys.exit(1)
     print("all checks passed")
 
+
+
+def focal_selectors_resolve() -> None:
+    """
+    Every selector in the photo-focal TARGETS table must match something in the markup.
+
+    The panel builds one slider per TARGETS row and applyAll() does
+    `document.querySelector(sel); if (!el) return;` — so a selector that matches nothing
+    produces a slider that moves, reports a percentage, saves to localStorage and changes
+    no image, with no error raised. Six of the twelve rows shipped in exactly that state,
+    pointing at .sig-mojito / .sig-turkish / .sig-avocado classes that existed only inside
+    this JS file (KNOWN-ISSUES #9). Nothing else in a static build can see this, because
+    the JS is valid and the HTML is valid; only the pairing is wrong.
+    """
+    js = (SITE_DIR / "js" / "photo-focal.js").read_text(encoding="utf-8")
+    index = (SITE_DIR / "index.html").read_text(encoding="utf-8")
+    classes = set()
+    for attr in re.findall(r'class="([^"]+)"', index):
+        classes.update(attr.split())
+    selectors = re.findall(r'sel:\s*"\.([a-zA-Z0-9_-]+)', js)
+    missing = sorted({s for s in selectors if s not in classes})
+    check("every crop slider targets an element that exists",
+          not missing,
+          f"{len(selectors)} selectors, all matched" if not missing
+          else "no such class in markup: " + ", ".join("." + m for m in missing))
 
 if __name__ == "__main__":
     main()

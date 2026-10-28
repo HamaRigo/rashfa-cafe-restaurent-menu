@@ -204,6 +204,59 @@ See [BUNDLE-FORMAT.md](BUNDLE-FORMAT.md#known-weaknesses-of-the-format).
 
 ---
 
+## 9. Six of twelve crop sliders target classes that do not exist
+
+**Severity:** functional, silent · **Status:** present in `site/`, fixed in this repo
+
+`photo-focal.js` drives every slider from a `TARGETS` table of CSS selectors. Twelve entries, and
+six of them address the signature cards:
+
+```js
+{ key:"mojito_x",  sel:".sig-mojito > img",    axis:"x", … }
+{ key:"turkish_y", sel:".sig-turkish > img",   axis:"y", … }
+{ key:"avocado_x", sel:".sig-avocado > img",   axis:"x", … }
+```
+
+Nothing in the markup carries `sig-mojito`, `sig-turkish` or `sig-avocado`. The three signature cards
+are `<article class="fcard">` (one additionally `fcard-dark`), and the classes appear nowhere in the
+CSS either — they exist only inside this one JS file. The gallery sliders are fine: `.gtile-1`
+through `.gtile-6` are real and each has an `<img>` as a direct child.
+
+The failure is total and quiet. `applyAll()` is:
+
+```js
+const el = document.querySelector(t.sel);
+if (!el) return;
+```
+
+so a selector that matches nothing is skipped — no console output, no error, no partially-applied
+state. The slider moves, its percentage readout updates, `localStorage` saves the value, and the
+image never budges. Someone using the panel would conclude the tool is broken rather than that
+those six specific controls are dead, and the other six working sliders make that misreading
+likely.
+
+**Why it survived delivery:** the panel is only reachable through an `__activate_edit_mode`
+postMessage from the editor host, so it never appears in normal use, and the default focal points
+were already good enough that nobody had a reason to reach for the sliders.
+
+**Fix** — one class per card, no CSS needed:
+
+```html
+<article class="fcard sig-mojito">
+<article class="fcard fcard-dark sig-turkish">
+<article class="fcard sig-avocado">
+```
+
+Applied in `site/index.html`. It is safe precisely because those classes style nothing: adding them
+cannot move a pixel, and `applyAll()` finds its element on the next load.
+
+**Guard** — `tools/verify.py` now reads the `TARGETS` table out of the JS and asserts every selector
+resolves against the class attributes actually present in `index.html`, which is the general form of
+this bug and the kind a static build cannot otherwise see.
+
+
+---
+
 ## Priority if this were picked up again
 
 | # | Issue | Effort | Impact |
@@ -214,3 +267,4 @@ See [BUNDLE-FORMAT.md](BUNDLE-FORMAT.md#known-weaknesses-of-the-format).
 | 4 | Self-host subset fonts (#1, #7) | medium | medium |
 | 5 | Reconcile dead tokens (#6) | small | low |
 | 6 | Make focal tweaks survive rebuilds (#4) | medium | low |
+| 7 | Point the six dead crop sliders at real classes (#9) | trivial | low |
