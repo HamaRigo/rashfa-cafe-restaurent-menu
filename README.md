@@ -3,11 +3,26 @@
 > A right-to-left Arabic / English digital menu for **Rashfa Cafe — Doha, Qatar**, built as a
 > zero-dependency static site and shipped to the client as a **single self-contained HTML file**.
 
-![Rashfa Cafe menu — hero and coffee section](docs/assets/preview-hero.png)
+| Desktop | Phone |
+|:---:|:---:|
+| ![Hero and coffee section, desktop](docs/assets/preview-hero.png) | ![Arabic menu on a phone viewport](docs/assets/preview-mobile.png) |
 
 **Live demo:** https://hamarigo.github.io/rashfa-cafe-restaurent-menu/
 
 ---
+
+## Documentation
+
+| Read | For |
+|---|---|
+| [ARCHITECTURE](docs/ARCHITECTURE.md) | how the page loads, the data/behaviour split, language switching, the build |
+| [BUNDLE-FORMAT](docs/BUNDLE-FORMAT.md) | the `__bundler` container field by field, and the eight steps its loader takes |
+| [DESIGN-SYSTEM](docs/DESIGN-SYSTEM.md) | palette, the five typefaces and which job each does, motion, RTL mirroring, breakpoints |
+| [KNOWN-ISSUES](docs/KNOWN-ISSUES.md) | nine measured defects, what each costs, and what was deliberately left alone |
+| [CONTENT-EDITOR](docs/CONTENT-EDITOR.md) | changing a price, adding an item, swapping a photo |
+| [DEPLOYMENT](docs/DEPLOYMENT.md) | three ways to ship it, caching, print behaviour |
+| [CONTRIBUTING](CONTRIBUTING.md) | setup, the one rule about `dist/`, conventions, what CI asserts |
+| [CHANGELOG](CHANGELOG.md) | what shipped, what was fixed after the fact |
 
 ## At a glance
 
@@ -17,7 +32,7 @@
 | Languages | Arabic (default, `dir="rtl"`) and English, toggled live |
 | Dependencies | **Zero** — no framework, no bundler, no runtime libraries |
 | Deliverable | One `.html` file that carries its own images and scripts |
-| Build tools | ~600 lines of Python standard library, no third-party packages |
+| Build tools | 663 lines of Python standard library, no third-party packages |
 | Prices | 10–25 QAR, formatted to two decimals in the display font |
 
 The whole thing is a single page: ambient hero, marquee ribbon, value cards, the menu itself,
@@ -105,11 +120,17 @@ rashfa-cafe-restaurent-menu/
 │   ├── unpack.py               bundle → site/
 │   ├── verify.py               consistency + render checks
 │   └── loader-head.html        the runtime unpacker embedded in dist/
-└── docs/
-    ├── ARCHITECTURE.md          how the page is put together
-    ├── DESIGN-SYSTEM.md         palette, type, motion, bilingual/RTL rules
-    ├── BUNDLE-FORMAT.md         the single-file format, field by field
-    └── KNOWN-ISSUES.md          real defects, measured, with fixes
+├── .github/workflows/
+│   └── ci.yml                   verify → fail on stale dist/ → publish Pages
+├── docs/
+│   ├── ARCHITECTURE.md          how the page is put together
+│   ├── DESIGN-SYSTEM.md         palette, type, motion, bilingual/RTL rules
+│   ├── BUNDLE-FORMAT.md         the single-file format, field by field
+│   ├── CONTENT-EDITOR.md        changing prices, items, photos, text
+│   ├── DEPLOYMENT.md            the single file, Pages, any static host
+│   └── KNOWN-ISSUES.md          real defects, measured, with fixes
+├── CONTRIBUTING.md              workflow, conventions, what the checks cover
+└── CHANGELOG.md                 delivery history and the tooling fixes
 ```
 
 ---
@@ -154,6 +175,10 @@ Documented honestly in [docs/KNOWN-ISSUES.md](docs/KNOWN-ISSUES.md). The short v
    in half.
 3. **The menu is JS-rendered**, so item names and prices are absent from the static HTML — fine
    for a QR-linked in-person menu, wrong for SEO.
+4. **Six of the twelve photo-crop sliders did nothing.** Their selectors point at `sig-mojito`,
+   `sig-turkish` and `sig-avocado`, and no element carries those classes; `applyAll()` skips a
+   null match without a word, so the slider moves and the image never does. Fixed, and now
+   asserted by `verify.py`.
 
 ---
 

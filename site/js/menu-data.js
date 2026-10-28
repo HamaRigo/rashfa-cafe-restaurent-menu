@@ -5,7 +5,29 @@
    ========================================================= */
 
 /* =========================================================
-   RASHFA CAFE · menu data + render + interactions
+   THE MENU ITSELF. Five categories, 43 items. This is the only
+   file a price change belongs in — menu-app.js renders whatever
+   is here and reads nothing else.
+
+   Shape of a category:
+     id       scroll target. The hero jump bar in index.html links
+              to "#<id>"; renaming one breaks that link with no
+              error, and tools/verify.py exists to catch exactly that.
+     num      printed index only ("01" … "05"). Cosmetic; ordering
+              comes from position in this array.
+     titleAr/En, subAr/En   heading and the small line under it.
+     items    the rows. `hot: true` adds the gold star (8 items use
+              it). `price` is a number in QAR — not a string, not
+              formatted; priceMarkup() in menu-app.js owns the
+              "QAR" label and the two decimals.
+
+   Arabic is the primary language: it is what the page shows first,
+   and these strings are customer-facing content, not comments. Do
+   not reformat, re-wrap or run a tidy pass over them — collapsing
+   whitespace inside an Arabic string changes what gets read.
+
+   Everything here is rendered by JavaScript, so none of it reaches
+   a search engine or a no-JS visitor (docs/KNOWN-ISSUES.md #3).
    ========================================================= */
 
 const MENU = [

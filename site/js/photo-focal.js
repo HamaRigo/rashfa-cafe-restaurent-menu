@@ -2,11 +2,37 @@
    RASHFA · Photo focal-point tweaker
    Lets the user shift each baked photo up/down/left/right
    without touching CSS. Persists to localStorage so
-   positions survive reload and bake into bundles.
+   positions survive reload on this device.
+
+   They do NOT bake into bundles: tools/bundle.py reads the values
+   out of index.html and CSS, and localStorage belongs to whichever
+   browser last used the panel. A tweak made here is invisible on a
+   phone and is not carried into the file handed to the client —
+   see docs/KNOWN-ISSUES.md #4.
+
+   Wrapped in an IIFE, so nothing here is reachable from the console
+   or from a host page. The only public surface is the message
+   listener in init(): postMessage {type:"__activate_edit_mode"} to
+   open the panel, "__deactivate_edit_mode" to close it. The script
+   announces "__edit_mode_available" to window.parent on load, which
+   is how the editor host discovers that this page can be edited.
+
+   Two facts to hold before editing TARGETS:
+    - every `sel` must match an element in index.html, or its slider
+      silently does nothing (applyAll skips nulls). tools/verify.py
+      asserts this, because six rows shipped pointing at classes that
+      did not exist — docs/KNOWN-ISSUES.md #9.
+    - one axis per row, so a photo that needs both X and Y control has
+      two rows sharing the same `sel` (see mojito_x / mojito_y).
    ========================================================= */
 
 (() => {
-  // Default focal points — overridden by localStorage if present
+  /**
+   * Focal points as percentages, one entry per axis in TARGETS.
+   * `*_x` and `*_y` become object-position on that image; 50 is centred.
+   * Overridden wholesale by anything stored under STORAGE_KEY, and
+   * restored per-key by the panel's "Reset all".
+   */
   const DEFAULTS = {
     "beans_y": 45,
     "foam_y": 35,
@@ -60,6 +86,18 @@
   }
 
   // ---------- apply object-position from current FOCAL ----------
+  /**
+   * Paint the current FOCAL onto the images.
+   *
+   * Rows are grouped by resolved element first, because `object-position`
+   * is a single declaration: setting X and Y in two passes would let the
+   * second overwrite the first. An element missing from the page is
+   * skipped without a word — the reason a dead selector is undetectable
+   * from the UI.
+   *
+   * Writes inline styles only; the CSS defaults in main.css stay intact so
+   * "Reset all" can fall back to DEFAULTS without needing to know them.
+   */
   function applyAll(){
     // group axes per element so we set both X and Y in one shot
     const byEl = new Map();
@@ -77,10 +115,21 @@
   }
 
   // ---------- panel ----------
+  // Built on first open, then reused: sliders are the only route to these
+  // values, so there is no point paying for the DOM before it is shown.
   let panel = null;
   let isDragging = false;
   let dragOffset = {x:0, y:0};
 
+  /**
+   * Construct the panel: one range row per TARGETS entry, a reset button,
+   * and a drag-by-header affordance so it can be moved out of the way on
+   * small screens.
+   *
+   * Each row writes FOCAL on `input` (live, so the image tracks the thumb)
+   * and persists on `change` (on release), which keeps localStorage writes
+   * to one per drag rather than one per pixel.
+   */
   function buildPanel(){
     panel = document.createElement("div");
     panel.id = "photo-tweaks-panel";
@@ -176,6 +225,14 @@
   }
 
   // ---------- styles ----------
+  /**
+   * Panel CSS, injected rather than kept in main.css.
+   *
+   * Deliberate: this script is a self-contained tool bolted onto the page,
+   * and shipping its styles in the same file means deleting one file
+   * removes the whole feature cleanly. Costs a <style> element at runtime
+   * and puts 200 lines of CSS where a designer would not look for it.
+   */
   function injectStyles(){
     const css = `
       #photo-tweaks-panel{
@@ -268,6 +325,13 @@
   }
 
   // ---------- edit-mode bridge ----------
+  /**
+   * Apply saved positions, then listen for the host's edit-mode signals.
+   *
+   * applyAll() runs unconditionally on load, before any panel exists:
+   * positions saved on this device are applied to every visit, which is the
+   * only way the tool's effect is ever visible to a normal visitor.
+   */
   function init(){
     loadFocal();
     injectStyles();
