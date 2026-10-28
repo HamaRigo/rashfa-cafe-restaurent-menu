@@ -13,6 +13,7 @@ Static checks:
   * the CSS referenced by <link> exists, and the JS referenced by <script> exists
   * menu-data.js declares every category id the jump bar links to
   * the JS files parse
+  * rebuilding produces byte-identical output
 
 With --browser it additionally rebuilds dist/ and asserts the rendered DOM has the
 same category and item counts as the source, and that no @font-face placeholder is
@@ -91,6 +92,35 @@ def static_checks() -> None:
 
     css = (SITE_DIR / "css" / "main.css").read_text(encoding="utf-8")
     check("main.css defines the gold palette", "--gold:#e2b340" in css)
+
+    build_is_deterministic()
+
+
+def build_is_deterministic() -> None:
+    """
+    Build twice into a temp dir and compare.
+
+    Catches the gzip MTIME field creeping back in: gzip.compress() stamps the
+    current clock into the header, which makes every build differ and turns the
+    CI "is dist/ stale?" check into permanent noise. A byte-stable build is what
+    lets dist/ be committed at all, so it is worth asserting rather than assuming.
+    """
+    bundle = REPO_ROOT / "tools" / "bundle.py"
+    try:
+        with tempfile.TemporaryDirectory() as td:
+            outs = []
+            for name in ("a.html", "b.html"):
+                target = Path(td) / name
+                subprocess.run(
+                    [sys.executable, str(bundle), "--out", str(target)],
+                    check=True, stdout=subprocess.DEVNULL,
+                )
+                outs.append(target.read_bytes())
+            check("build is byte-reproducible", outs[0] == outs[1],
+                  f"{len(outs[0]) / 1024:.0f} KB, identical" if outs[0] == outs[1]
+                  else "outputs differ -- check the gzip mtime header")
+    except subprocess.CalledProcessError as e:
+        check("build is byte-reproducible", False, f"bundle.py failed: {e}")
 
     if not find_chrome():
         notes.append("no Chrome found -- skipped --browser checks")

@@ -120,5 +120,21 @@ because it lives on `window`, not in the replaced tree.
 ## Reproducibility
 
 `bundle.py` assigns UUIDs with `uuid5(NAMESPACE_URL, "rashfa://" + rel_path)` instead of
-`uuid4()`. Two builds of an unchanged `site/` are therefore byte-identical, which lets `dist/` be
-committed and reviewed as a normal build artefact rather than a file that churns on every rebuild.
+`uuid4()`, so two builds of an unchanged `site/` produce byte-identical output. That is what lets
+`dist/` be committed and reviewed as a normal build artefact, and what makes the CI check
+"did anyone edit `site/` without rebuilding?" meaningful rather than noisy.
+
+One trap had to be handled to get there. A gzip header carries an MTIME field, and Python's
+`gzip.compress()` stamps it with the current clock — so the three compressed text assets differed in
+a handful of base64 bytes on every single build, even with identical input. Pinning the header to
+`mtime=0` fixes it:
+
+```python
+buf = io.BytesIO()
+with gzip.GzipFile(fileobj=buf, mode="wb", compresslevel=9, mtime=0) as gz:
+    gz.write(data)
+```
+
+`GzipFile` is used rather than the `mtime=` keyword of `gzip.compress()` because that keyword only
+exists on Python 3.11+. `verify.py` now rebuilds twice and compares, so the claim is enforced rather
+than assumed — the bug was only caught because CI ran on a different clock than the laptop.

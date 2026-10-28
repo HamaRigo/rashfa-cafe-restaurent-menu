@@ -23,6 +23,7 @@ from __future__ import annotations
 import argparse
 import base64
 import gzip
+import io
 import json
 import re
 import uuid as uuidlib
@@ -59,8 +60,20 @@ def stable_uuid(rel_path: str) -> str:
 
 
 def encode(data: bytes, compress: bool) -> tuple[str, bool]:
+    """
+    bytes -> (base64 text, was-compressed).
+
+    The gzip header carries an MTIME field, and gzip.compress() stamps it with
+    the current clock. That would make every build differ in a few base64 bytes
+    and turn the CI "is dist/ stale?" check into permanent noise, so the header
+    is pinned to mtime=0 here. GzipFile is used rather than the mtime= keyword
+    of gzip.compress because that keyword only exists on Python 3.11+.
+    """
     if compress:
-        data = gzip.compress(data, 9)
+        buf = io.BytesIO()
+        with gzip.GzipFile(fileobj=buf, mode="wb", compresslevel=9, mtime=0) as gz:
+            gz.write(data)
+        data = buf.getvalue()
     return base64.b64encode(data).decode("ascii"), compress
 
 
