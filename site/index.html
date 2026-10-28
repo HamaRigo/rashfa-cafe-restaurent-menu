@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>رشفة كوفي · Rashfa Cafe — Doha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="stylesheet" href="css/photo-integration.css">
+
+    <!-- Typefaces rebuilt from the @font-face rules kept at
+         css/fonts.embedded.css. Those rules point at placeholders
+         that never resolve, so this live sheet is what loads
+         Cairo / Tajawal / Inter / Cormorant / Cinzel. -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Cinzel:wght@500;700&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Tajawal:wght@400;500;700;900&display=swap">
+    <link rel="stylesheet" href="css/main.css">
+
+</head>
+<body>
+
+<!-- ========== AMBIENT BEAN FIELD ========== -->
+<div class="beans" aria-hidden="true">
+  <span style="--x:6%;--d:14s;--s:18px"></span>
+  <span style="--x:14%;--d:22s;--s:11px;--o:.5"></span>
+  <span style="--x:22%;--d:17s;--s:24px"></span>
+  <span style="--x:32%;--d:28s;--s:14px;--o:.6"></span>
+  <span style="--x:41%;--d:19s;--s:22px"></span>
+  <span style="--x:50%;--d:25s;--s:12px;--o:.5"></span>
+  <span style="--x:58%;--d:16s;--s:20px"></span>
+  <span style="--x:68%;--d:23s;--s:15px;--o:.6"></span>
+  <span style="--x:76%;--d:18s;--s:18px"></span>
+  <span style="--x:84%;--d:21s;--s:13px;--o:.55"></span>
+  <span style="--x:92%;--d:26s;--s:20px"></span>
+</div>
+
+<!-- ========== TOP BAR ========== -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="#top" class="brand-mini">
+      <img src="img/logo-rashfa.jpg" alt="Rashfa Cafe">
+      <div>
+        <div class="brand-mini-ar">رشفة كوفي</div>
+        <div class="brand-mini-en">RASHFA · CAFE</div>
+      </div>
+    </a>
+    <nav class="topnav">
+      <a href="#coffee"><span class="t-ar">القهوة</span><span class="t-en">Coffee</span></a>
+      <a href="#juice"><span class="t-ar">العصائر</span><span class="t-en">Juice</span></a>
+      <a href="#story"><span class="t-ar">قصتنا</span><span class="t-en">Story</span></a>
+      <a href="#visit"><span class="t-ar">زورونا</span><span class="t-en">Visit</span></a>
+    </nav>
+    <div class="lang-toggle" role="tablist" aria-label="Language">
+      <button type="button" data-lang="ar" class="active" role="tab">ع</button>
+      <button type="button" data-lang="en" role="tab">EN</button>
+      <span class="lang-pill" aria-hidden="true"></span>
+    </div>
+  </div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="top">
+
+  <!-- big background bean -->
+  <div class="hero-bg-bean" aria-hidden="true">
+    <svg viewBox="0 0 600 800">
+      <ellipse cx="300" cy="400" rx="200" ry="320" fill="none" stroke="currentColor" stroke-width="1.5"></ellipse>
+      <path d="M300 80 Q260 400 300 720" stroke="currentColor" stroke-width="1.5" fill="none"></path>
+    </svg>
+  </div>
+
+  <div class="hero-frame">
+
+    <!-- corner ornaments -->
+    <svg class="corner corner-tl" viewBox="0 0 80 80" aria-hidden="true">
+      <path d="M2 40 Q2 2 40 2" stroke="currentColor" stroke-width="1.3" fill="none"></path>
+      <path d="M14 40 Q14 14 40 14" stroke="currentColor" stroke-width="1" fill="none" opacity=".6"></path>
+      <circle cx="40" cy="2" r="2" fill="currentColor"></circle>
+      <circle cx="2" cy="40" r="2" fill="currentColor"></circle>
+    </svg>
+    <svg class="corner corner-tr" viewBox="0 0 80 80" aria-hidden="true">
+      <path d="M78 40 Q78 2 40 2" stroke="currentColor" stroke-width="1.3" fill="none"></path>
+      <path d="M66 40 Q66 14 40 14" stroke="currentColor" stroke-width="1" fill="none" opacity=".6"></path>
+      <circle cx="40" cy="2" r="2" fill="currentColor"></circle>
+      <circle cx="78" cy="40" r="2" fill="currentColor"></circle>
+    </svg>
+    <svg class="corner corner-bl" viewBox="0 0 80 80" aria-hidden="true">
+      <path d="M2 40 Q2 78 40 78" stroke="currentColor" stroke-width="1.3" fill="none"></path>
+      <path d="M14 40 Q14 66 40 66" stroke="currentColor" stroke-width="1" fill="none" opacity=".6"></path>
+      <circle cx="40" cy="78" r="2" fill="currentColor"></circle>
+      <circle cx="2" cy="40" r="2" fill="currentColor"></circle>
+    </svg>
+    <svg class="corner corner-br" viewBox="0 0 80 80" aria-hidden="true">
+      <path d="M78 40 Q78 78 40 78" stroke="currentColor" stroke-width="1.3" fill="none"></path>
+      <path d="M66 40 Q66 66 40 66" stroke="currentColor" stroke-width="1" fill="none" opacity=".6"></path>
+      <circle cx="40" cy="78" r="2" fill="currentColor"></circle>
+      <circle cx="78" cy="40" r="2" fill="currentColor"></circle>
+    </svg>
+
+    <div class="hero-grid">
+
+      <div class="hero-side hero-side-l">
+        <div class="badge-loc">
+          <span class="t-ar">الدوحة · قطر</span>
+          <span class="t-en">Doha · Qatar</span>
+        </div>
+      </div>
+
+      <div class="hero-center">
+        <div class="hero-crest" aria-hidden="true">
+          <svg viewBox="0 0 200 110">
+            <!-- left sprig -->
+            <path d="M50 70 Q40 60 30 62 M50 70 Q44 50 36 46 M50 70 Q56 50 64 46 M50 70 L50 88" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"></path>
+            <ellipse cx="30" cy="62" rx="6" ry="3" fill="currentColor" opacity=".9" transform="rotate(-20 30 62)"></ellipse>
+            <ellipse cx="36" cy="46" rx="6" ry="3" fill="currentColor" opacity=".9" transform="rotate(-60 36 46)"></ellipse>
+            <ellipse cx="64" cy="46" rx="6" ry="3" fill="currentColor" opacity=".9" transform="rotate(60 64 46)"></ellipse>
+            <!-- right sprig -->
+            <path d="M150 70 Q160 60 170 62 M150 70 Q156 50 164 46 M150 70 Q144 50 136 46 M150 70 L150 88" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"></path>
+            <ellipse cx="170" cy="62" rx="6" ry="3" fill="currentColor" opacity=".9" transform="rotate(20 170 62)"></ellipse>
+            <ellipse cx="164" cy="46" rx="6" ry="3" fill="currentColor" opacity=".9" transform="rotate(60 164 46)"></ellipse>
+            <ellipse cx="136" cy="46" rx="6" ry="3" fill="currentColor" opacity=".9" transform="rotate(-60 136 46)"></ellipse>
+            <!-- center bean -->
+            <ellipse cx="100" cy="55" rx="18" ry="26" fill="none" stroke="currentColor" stroke-width="2"></ellipse>
+            <path d="M100 30 Q92 55 100 80" stroke="currentColor" stroke-width="1.6" fill="none"></path>
+            <!-- thin connecting lines -->
+            <path d="M0 90 L40 90 M160 90 L200 90" stroke="currentColor" stroke-width=".8" opacity=".5"></path>
+            <circle cx="40" cy="90" r="1.5" fill="currentColor"></circle>
+            <circle cx="160" cy="90" r="1.5" fill="currentColor"></circle>
+          </svg>
+          <div class="hero-crest-label">
+            <span class="t-ar">قائمة المشروبات</span>
+            <span class="t-en">drinks menu</span>
+          </div>
+        </div>
+
+        <h1 class="hero-title">
+          <span class="t-ar">ما تُفسده الحياة <em>تُصلحه</em> رشفة قهوة</span>
+          <span class="t-en">what life unravels, <em>a sip</em> mends</span>
+        </h1>
+
+        <div class="hero-bilingual">
+          <span class="t-ar">RASHFA · CAFE · DOHA</span>
+          <span class="t-en">رشفة كوفي · الدوحة</span>
+        </div>
+
+        <p class="hero-sub">
+          <span class="t-ar">قهوة دافئة، عصائر طبيعية ١٠٠٪، ووجبات سريعة ساخنة — كل الأسعار بالريال القطري.</span>
+          <span class="t-en">Warm coffee, 100% real-fruit juice, and hot fast-food bites — all prices in Qatari Riyal.</span>
+        </p>
+      </div>
+
+      <div class="hero-side hero-side-r">
+        <div class="badge-hours">
+          <span class="t-ar">مفتوح</span><span class="t-en">open</span>
+          <b>5 AM<i>—</i>2 AM</b>
+        </div>
+        <div class="badge-roast">
+          <span>100%</span>
+          <span class="t-ar">فريش</span>
+          <span class="t-en">fresh</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- big logo medallion -->
+    <div class="hero-medallion" aria-hidden="true">
+      <span class="steam s1"></span>
+      <span class="steam s2"></span>
+      <span class="steam s3"></span>
+      <span class="steam s4"></span>
+      <span class="steam s5"></span>
+      <div class="hm-ring hm-ring-1"></div>
+      <div class="hm-ring hm-ring-2"></div>
+      <div class="hm-disc">
+        <img src="img/logo-rashfa.jpg" alt="Rashfa Cafe">
+      </div>
+      <span class="hm-dot hm-dot-1">◆</span>
+      <span class="hm-dot hm-dot-2">★</span>
+      <span class="hm-dot hm-dot-3">◆</span>
+      <span class="hm-dot hm-dot-4">★</span>
+    </div>
+
+    <div class="hero-jumpbar">
+      <a href="#coffee"><span class="jb-num">01</span><span class="t-ar">القهوة</span><span class="t-en">Coffee</span></a>
+      <a href="#tea"><span class="jb-num">02</span><span class="t-ar">الشاي</span><span class="t-en">Tea</span></a>
+      <a href="#juice"><span class="jb-num">03</span><span class="t-ar">العصائر</span><span class="t-en">Juice</span></a>
+      <a href="#sandwich"><span class="jb-num">04</span><span class="t-ar">سندويتشات</span><span class="t-en">Sandwiches</span></a>
+      <a href="#drinks"><span class="jb-num">05</span><span class="t-ar">مشروبات</span><span class="t-en">Drinks</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== MARQUEE RIBBON ========== -->
+<div class="ribbon" aria-hidden="true">
+  <div class="ribbon-track">
+    <span>· فريش كوفي ·</span><span>· warm coffee ·</span>
+    <span>· قهوة دافئة ·</span><span>· 100% pure ·</span>
+    <span>· عصائر طازجة ·</span><span>· fresh juice ·</span>
+    <span>· رشفة كوفي ·</span><span>· rashfa cafe ·</span>
+    <span>· فريش كوفي ·</span><span>· warm coffee ·</span>
+    <span>· قهوة دافئة ·</span><span>· 100% pure ·</span>
+    <span>· عصائر طازجة ·</span><span>· fresh juice ·</span>
+    <span>· رشفة كوفي ·</span><span>· rashfa cafe ·</span>
+  </div>
+</div>
+
+<!-- ========== VALUE PROPS ========== -->
+<section class="values">
+  <div class="values-inner">
+    <div class="value">
+      <div class="value-icon">
+        <svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="22" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M30 18 V30 L38 35" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"></path></svg>
+      </div>
+      <div class="value-num">01</div>
+      <h3><span class="t-ar">يُعدّ عند الطلب</span><span class="t-en">Made to Order</span></h3>
+      <p><span class="t-ar">كل كوب يُحضَّر فور طلبك — لا ينتظر أحدًا.</span><span class="t-en">Every cup is pulled the moment you order. Nothing sits.</span></p>
+    </div>
+    <div class="value">
+      <div class="value-icon">
+        <svg viewBox="0 0 60 60"><path d="M18 30 Q30 14 42 30 Q30 46 18 30 Z" fill="none" stroke="currentColor" stroke-width="2"></path><circle cx="30" cy="30" r="6" fill="currentColor" opacity=".8"></circle></svg>
+      </div>
+      <div class="value-num">02</div>
+      <h3><span class="t-ar">١٠٠٪ فواكه</span><span class="t-en">100% Real Fruit</span></h3>
+      <p><span class="t-ar">عصائر طبيعية بدون سكر مضاف — فاكهة فقط.</span><span class="t-en">Pressed fruit, nothing added. No syrups, no shortcuts.</span></p>
+    </div>
+    <div class="value">
+      <div class="value-icon">
+        <svg viewBox="0 0 60 60"><path d="M10 38 Q10 26 22 26 L38 26 Q50 26 50 38 L50 42 L10 42 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path><path d="M14 30 L46 30 M18 22 Q22 18 26 22 Q30 26 34 22 Q38 18 42 22" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"></path></svg>
+      </div>
+      <div class="value-num">03</div>
+      <h3><span class="t-ar">وجبات سريعة</span><span class="t-en">Fast Food</span></h3>
+      <p><span class="t-ar">سندويتشات ساخنة ووجبات خفيفة تجهّز في دقائق.</span><span class="t-en">Hot sandwiches and quick bites, ready in minutes.</span></p>
+    </div>
+    <div class="value">
+      <div class="value-icon">
+        <svg viewBox="0 0 60 60"><rect x="14" y="14" width="32" height="32" rx="4" fill="none" stroke="currentColor" stroke-width="2"></rect><path d="M14 22 L46 22 M22 14 L22 22 M38 14 L38 22 M22 32 H28 M22 38 H38 M32 32 H38" stroke="currentColor" stroke-width="2" fill="none"></path></svg>
+      </div>
+      <div class="value-num">04</div>
+      <h3><span class="t-ar">طوال اليوم</span><span class="t-en">Open All Day</span></h3>
+      <p><span class="t-ar">من الخامسة صباحًا حتى الثانية ليلًا — كل أيام الأسبوع.</span><span class="t-en">5 AM until 2 AM the next morning, every day of the week.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ORNAMENTAL DIVIDER ========== -->
+<div class="orna" aria-hidden="true">
+  <span class="orna-line"></span>
+  <svg class="orna-mark" viewBox="0 0 80 40">
+    <path d="M4 20 Q20 6 40 20 Q60 34 76 20" stroke="currentColor" stroke-width="1.3" fill="none"></path>
+    <circle cx="40" cy="20" r="3" fill="currentColor"></circle>
+    <circle cx="4" cy="20" r="1.6" fill="currentColor"></circle>
+    <circle cx="76" cy="20" r="1.6" fill="currentColor"></circle>
+  </svg>
+  <span class="orna-line"></span>
+</div>
+
+<!-- ========== MENU ========== -->
+<main class="menu" id="menu"></main>
+
+<!-- ========== FEATURE CARDS (3) ========== -->
+<section class="features" id="signatures">
+  <div class="features-head">
+    <span class="features-eye">
+      <span class="t-ar">توقيع البيت</span>
+      <span class="t-en">house signatures</span>
+    </span>
+    <h2>
+      <span class="t-ar">ثلاث رشفات ولقمة</span>
+      <span class="t-en">three sips, one bite</span>
+    </h2>
+  </div>
+
+  <div class="features-grid">
+
+    <!-- Mojito -->
+    <article class="fcard">
+      <div class="fcard-art fcard-photo fcard-filled">
+        <img src="img/signature-mojito.webp" alt="Rashfa mojito with mint and ice">
+      </div>
+      <div class="fcard-body">
+        <div class="fcard-tag"><span class="t-ar">عصير مميّز</span><span class="t-en">signature juice</span></div>
+        <h3><span class="t-ar">موهيتو رشفة</span><span class="t-en">Rashfa Mojito</span></h3>
+        <p><span class="t-ar">ليمون أخضر، نعناع طازج مدقوق، صودا، ولمسة قصب.</span><span class="t-en">Fresh lime, hand-bruised mint, ice-cold soda, a touch of cane.</span></p>
+        <div class="fcard-price"><span class="cur">QAR</span><b>15</b><i>.00</i></div>
+      </div>
+    </article>
+
+    <!-- Turkish Coffee -->
+    <article class="fcard fcard-dark">
+      <div class="fcard-art fcard-photo fcard-filled">
+        <img src="img/signature-turkish.jpg" alt="Turkish coffee in traditional cezve">
+      </div>
+      <div class="fcard-body">
+        <div class="fcard-tag"><span class="t-ar">قهوة مميّزة</span><span class="t-en">signature coffee</span></div>
+        <h3><span class="t-ar">قهوة تركية</span><span class="t-en">Turkish Coffee</span></h3>
+        <p><span class="t-ar">مغلية على الرمل ببطء — رغوة سميكة ونكهات دافئة في كل رشفة.</span><span class="t-en">Sand-brewed, slow. Thick crema and warm notes in every sip.</span></p>
+        <div class="fcard-price"><span class="cur">QAR</span><b>10</b><i>.00</i></div>
+      </div>
+    </article>
+
+    <!-- Avocado -->
+    <article class="fcard">
+      <div class="fcard-art fcard-photo fcard-filled">
+        <img src="img/signature-avocado.jpg" alt="Avocado cream shake">
+      </div>
+      <div class="fcard-body">
+        <div class="fcard-tag"><span class="t-ar">عصير غني</span><span class="t-en">creamy signature</span></div>
+        <h3><span class="t-ar">أفوكاتو بالحليب</span><span class="t-en">Avocado Cream</span></h3>
+        <p><span class="t-ar">أفوكاتو ناضج، حليب بارد، عسل خفيف — كثيف وكريمي.</span><span class="t-en">Ripe avocado, cold milk, a kiss of honey. Rich and creamy.</span></p>
+        <div class="fcard-price"><span class="cur">QAR</span><b>15</b><i>.00</i></div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ========== STORY ========== -->
+<section class="story" id="story">
+  <div class="story-inner">
+    <div class="story-art">
+      <div class="story-disc">
+        <img src="img/logo-rashfa.jpg" alt="Rashfa Cafe">
+      </div>
+      <div class="story-ring story-ring-1" aria-hidden="true"></div>
+      <div class="story-ring story-ring-2" aria-hidden="true"></div>
+      <div class="story-dot story-dot-1" aria-hidden="true">★</div>
+      <div class="story-dot story-dot-2" aria-hidden="true">◆</div>
+      <div class="story-dot story-dot-3" aria-hidden="true">●</div>
+    </div>
+    <div class="story-copy">
+      <div class="story-tag"><span class="t-ar">قصتنا</span><span class="t-en">our story</span></div>
+      <h2>
+        <span class="t-ar">ابدأ يومك برشفة</span>
+        <span class="t-en">begin your day with a sip</span>
+      </h2>
+      <p class="story-quote">
+        <span class="t-ar">«ما تُفسده الحياة تُصلحه رشفة قهوة. فتحنا أبوابنا قبل الفجر لمن يبدأ يومه، وأبقيناها مفتوحة لمن لا يجد النوم، وأضفنا للرشفة أكلات خفيفة.»</span>
+        <span class="t-en">"What life unravels, a sip of coffee mends. We open our doors before dawn for those starting their day, keep them open for those who can't sleep, and added quick bites alongside the cup."</span>
+      </p>
+      <div class="story-sign">
+        <div class="story-sig">— Rashfa</div>
+        <div class="story-meta">
+          <span class="t-ar">صُنع بحب في الدوحة</span>
+          <span class="t-en">made with love in doha</span>
+        </div>
+      </div>
+
+      <div class="story-stats">
+        <div class="stat"><b>05:00</b><span><span class="t-ar">صباحاً</span><span class="t-en">opens</span></span></div>
+        <div class="stat"><b>34</b><span><span class="t-ar">صنفاً</span><span class="t-en">items</span></span></div>
+        <div class="stat"><b>100%</b><span><span class="t-ar">فريش</span><span class="t-en">fresh</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== GALLERY ========== -->
+<section class="gallery">
+  <div class="gallery-head">
+    <span class="g-eye"><span class="t-ar">من داخل الكافيه</span><span class="t-en">inside the cafe</span></span>
+    <h2><span class="t-ar">الأجواء</span><span class="t-en">atmosphere</span></h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gtile gtile-1 gtile-photo gtile-filled">
+      <img src="img/gallery-1-beans.jpg" alt="Fresh roasted coffee beans">
+      <span class="gtile-cap"><span class="t-ar">حبوب طازجة</span><span class="t-en">fresh beans</span></span>
+    </div>
+    <div class="gtile gtile-2 gtile-photo gtile-filled">
+      <img src="img/gallery-2-foam.jpg" alt="Silky latte art foam">
+      <span class="gtile-cap"><span class="t-ar">رغوة حريرية</span><span class="t-en">silky foam</span></span>
+    </div>
+    <div class="gtile gtile-3 gtile-photo gtile-filled">
+      <img src="img/gallery-3-warm-light.jpg" alt="Warm daylight inside the cafe">
+      <span class="gtile-cap"><span class="t-ar">ضوء دافئ</span><span class="t-en">warm light</span></span>
+    </div>
+    <div class="gtile gtile-4 gtile-photo gtile-filled">
+      <img src="img/gallery-4-seats.jpg" alt="Slow seating inside the cafe">
+      <span class="gtile-cap"><span class="t-ar">جلسة ممتدة</span><span class="t-en">slow seats</span></span>
+    </div>
+    <div class="gtile gtile-5 gtile-photo gtile-filled">
+      <img src="img/gallery-5-juice.jpg" alt="Cold-pressed juices">
+      <span class="gtile-cap"><span class="t-ar">عصير طبيعي</span><span class="t-en">cold pressed</span></span>
+    </div>
+    <div class="gtile gtile-6 gtile-photo gtile-filled">
+      <img src="img/gallery-6-night.jpg" alt="Late night coffee at Rashfa">
+      <span class="gtile-cap"><span class="t-ar">ليلة طويلة</span><span class="t-en">late nights</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA STRIP ========== -->
+<section class="cta-strip" id="visit">
+  <div class="cta-inner">
+    <div class="cta-l">
+      <div class="cta-eye"><span class="t-ar">احجز رشفتك</span><span class="t-en">come for a sip</span></div>
+      <h2><span class="t-ar">نراك في الدوحة</span><span class="t-en">see you in doha</span></h2>
+    </div>
+    <div class="cta-r">
+      <a class="cta-btn" href="tel:+97477689633">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 4c-1 0-2 1-2 2 0 8 7 14 14 14 1 0 2-1 2-2v-3c0-1-1-2-2-2l-3 1-3-3 1-3c0-1-1-2-2-2H5z" fill="none" stroke="currentColor" stroke-width="2"></path></svg>
+        <span>+974 7768 9633</span>
+      </a>
+      <a class="cta-btn cta-btn-soft" href="https://wa.me/97477689633" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M3 20l1.4-4A8 8 0 1 1 8 20l-5 0z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path></svg>
+        <span>WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-col foot-logo">
+      <img src="img/logo-rashfa.jpg" alt="Rashfa Cafe">
+      <div class="foot-tag"><span class="t-ar">رشفة تختلف</span><span class="t-en">a sip apart</span></div>
+    </div>
+    <div class="foot-col">
+      <div class="foot-label"><span class="t-ar">ساعات العمل</span><span class="t-en">hours</span></div>
+      <div class="foot-row"><span class="t-ar">طوال أيام الأسبوع</span><span class="t-en">Every day</span><b>5:00 AM — 2:00 AM</b></div>
+      <div class="foot-row"><span class="t-ar">لا يوم عطلة</span><span class="t-en">No off-days</span><b>open · مفتوح</b></div>
+    </div>
+    <div class="foot-col">
+      <div class="foot-label"><span class="t-ar">تواصل</span><span class="t-en">find us</span></div>
+      <div class="foot-row"><span class="t-ar">الدوحة، قطر</span><span class="t-en">Doha, Qatar</span></div>
+      <div class="foot-row"><span class="t-ar">انستغرام</span><span class="t-en">Instagram</span><b>@rashfa.cafe</b></div>
+      <div class="foot-row"><span class="t-ar">واتساب</span><span class="t-en">WhatsApp</span><b>+974 7768 9633</b></div>
+    </div>
+    <div class="foot-col foot-scan">
+      <div class="qr" aria-hidden="true">
+        <div class="qr-grid"></div>
+        <div class="qr-eye qr-tl"></div>
+        <div class="qr-eye qr-tr"></div>
+        <div class="qr-eye qr-bl"></div>
+        <div class="qr-logo">
+          <svg viewBox="0 0 24 24"><path d="M6 14c0 4 2 6 6 6s6-2 6-6V8H6z" fill="none" stroke="currentColor" stroke-width="1.8"></path><path d="M18 10h1.5a2.5 2.5 0 010 5H18" fill="none" stroke="currentColor" stroke-width="1.8"></path><path d="M9 4c0 1.5 0 1.5 1 3M12 3c0 1.5 0 1.5 1 3M15 4c0 1.5 0 1.5 1 3" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"></path></svg>
+        </div>
+      </div>
+      <div class="qr-cap">
+        <span class="t-ar">امسح للقائمة الرقمية</span>
+        <span class="t-en">scan for digital menu</span>
+      </div>
+    </div>
+  </div>
+  <div class="foot-base">
+    <span>© 2026 Rashfa Cafe · رشفة كوفي</span>
+    <span class="foot-base-dot">◆</span>
+    <span><span class="t-ar">صُنع بحب في الدوحة</span><span class="t-en">made with love in doha</span></span>
+  </div>
+</footer>
+
+<script src="js/photo-focal.js"></script>
+<script src="js/menu-data.js"></script>
+<script src="js/menu-app.js"></script>
+
+</body></html>
