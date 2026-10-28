@@ -1,0 +1,43 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editors
+.idea/
+.vscode/
+*.swp
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.mypy_cache/
+.pytest_cache/
+
+# Local builds and scratch output — dist/rashfa-cafe-menu.html IS committed
+# on purpose (it is the deliverable, and builds are byte-deterministic).
+*.bundle.html
+/tmp/
+.preview/
+
+# The client's original delivered artifact is kept outside this repo.
+# It is 4 MB of duplicated base64; regenerate an equivalent with tools/bundle.py.
+*.original.html
+
+# Never commit commercial material even if it lands in this folder
+invoice*
+quotation*
+scope-of-work*
+letterhead*
+PLAN.md
+*.pdf
+*.zip
+
+# Local env / credentials
+.env
+.env.*
+*.pem
+*.key
